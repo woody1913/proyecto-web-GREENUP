@@ -1,46 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
-<link rel="stylesheet" href="style.css">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREENUP - Inicio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="navbar">
-    <div class="logo-container">
-      <img src="imagenes/4181E3B8-1C13-4848-8590-D15F80325442.png" alt="Logo del grupo">
-      <span>GREENUP</span>
+
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="imagenes/4181E3B8-1C13-4848-8590-D15F80325442.png" alt="Logo del grupo" class="img">
+            <span>GREENUP</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="misiones.html">Misiones</a>
+            <a href="dudas.html">Preguntas Frecuentes</a>
+            <a href="informacion.html">Información Relevante</a>
+        </div>
     </div>
-    <div class="nav-links">
-        <a href="index.html">Inicio</a>
-      <a href="misiones.html">Misiones</a>
-      <a href="dudas.html">Preguntas Frecuentes</a>
-      <a href="informacion.html">Información Relevante</a>
-      <a href="funcion.html">Función</a>
-  
+
+    <h1>Bienvenido a GREEN UP</h1>
+    <P>Nuestra app consiste en hacer misiones las cuales te daran experiencia para un planeta virtual(si quieres saber mas ve a informacion Relevante) a continuacion te pedimos que respondas este formulario para determinar tu huella de carbono</P>
+    <div class="calculator-container" id="calculator-container">
+        <h1 class="calculator-title">Calculadora de Huella de Carbono 🌍</h1>
+        <p>Responde estas preguntas para estimar tu huella anual de CO₂.</p>
+
+        <form id="carbon-footprint-form">
+            <div class="input-group">
+                <label for="consumo-energia">¿Cómo describirías tu consumo de energía?</label>
+                <select id="consumo-energia">
+                    <option value="bajo">Bajo (Uso consciente y eficiente)</option>
+                    <option value="medio">Medio (Uso normal, sin grandes excesos)</option>
+                    <option value="alto">Alto (Muchos aparatos, luces encendidas, etc.)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="uso-coche">¿Con qué frecuencia usas el coche?</label>
+                <select id="uso-coche">
+                    <option value="casi-nunca">Casi nunca</option>
+                    <option value="algunas-veces">Algunas veces al mes</option>
+                    <option value="varias-veces">Varias veces a la semana</option>
+                    <option value="todos-dias">Todos los días</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="viajes-avion">¿Cuántos viajes en avión sueles hacer al año?</label>
+                <select id="viajes-avion">
+                    <option value="ninguno">Ninguno</option>
+                    <option value="uno">1 o 2 vuelos</option>
+                    <option value="varios">3 o más vuelos</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <p>¿Sueles reciclar?</p>
+                <label><input type="radio" name="reciclaje" value="si" checked> Sí</label>
+                <label><input type="radio" name="reciclaje" value="no"> No</label>
+            </div>
+
+            <button type="submit">Calcular Huella de Carbono</button>
+        </form>
+
+        <div id="resultado" style="display: none;">
+            Tu huella de carbono anual estimada es de <span id="huella-anual"></span> toneladas de CO₂.
+            <div id="evaluacion"></div>
+        </div>
     </div>
-  </div>
-  <div style="padding: 30px;">
-    <h1>Bienvenido a tu sitio</h1>
-    <h2>Sobre nosotros:</h2>
-    <h2>¡Quienes somos?</h2>
-    <p>Somos un grupo de alumnos de un secundario que ven la importancia del cuidado del ambiente.</p>
-    <p>Nuestros nombres son:</p>
-    <p>.Maximo fernandez</p>
-    <p>.Genaro Taborda</p>
-    <p>.Lisandro Ceballos</p>
-    <p>.Facundo Solano</p>
-    <p>.Facundo zarate</p>
-    <h2>¿Porque creamos este proyecto?</h2>
-    <p>Somos un grupo de compañeros de secundaria que estudian programacion que se unieron para crear un proyecto innovador.
-      Nuestra pasion por la programacion y el diseño nos llevo a crear una plataforma que permita a los usuarios monitorear y reducir
-      su impacto climatico.
-      <h2>¿Que nos motiva?</h2>
-      <p>Lo que nos motiva es la pasion por la programacion y el diseño.Queremos hacer algo que tenga un impacto positivo en el medio ambiente y que les permita a las personastomar accion para proteger el planeta.
-        Estamos emocionados de compartir nuestro proyecto con el mundo y de ver como puede ser utilizado para crear un futuro mas sostenible.
-      </p>
-    </p>
-  </div>
+
+    <div style="padding: 30px;">
+        <h2>Sobre nosotros:</h2>
+        <h2>¿Quienes somos?</h2>
+        <p>Somos un grupo de alumnos de un secundario que ven la importancia del cuidado del ambiente.</p>
+        <p>Nuestros nombres son:</p>
+        <p>.Maximo fernandez</p>
+        <p>.Genaro Taborda</p>
+        <p>.Lisandro Ceballos</p>
+        <p>.Facundo Solano</p>
+        <p>.Facundo zarate</p>
+        <h2>¿Porque creamos este proyecto?</h2>
+        <p>Somos un grupo de compañeros de secundaria que estudian programacion que se unieron para crear un proyecto innovador. Nuestra pasion por la programacion y el diseño nos llevo a crear una plataforma que permita a los usuarios monitorear y reducir su impacto climatico.</p>
+        <h2>¿Que nos motiva?</h2>
+        <p>Lo que nos motiva es la pasion por la programacion y el diseño.Queremos hacer algo que tenga un impacto positivo en el medio ambiente y que les permita a las personastomar accion para proteger el planeta. Estamos emocionados de compartir nuestro proyecto con el mundo y de ver como puede ser utilizado para crear un futuro mas sostenible.</p>
+    </div>
+
+    <script>
+        document.getElementById('carbon-footprint-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Obtener los valores de las nuevas preguntas
+            const consumoEnergia = document.getElementById('consumo-energia').value;
+            const usoCoche = document.getElementById('uso-coche').value;
+            const viajesAvion = document.getElementById('viajes-avion').value;
+            const recicla = document.querySelector('input[name="reciclaje"]:checked').value;
+            
+            let huellaAnualToneladas = 0;
+
+            // Lógica para asignar valores en función de las respuestas
+            switch (consumoEnergia) {
+                case 'bajo':
+                    huellaAnualToneladas += 0.5; // Toneladas
+                    break;
+                case 'medio':
+                    huellaAnualToneladas += 2.0;
+                    break;
+                case 'alto':
+                    huellaAnualToneladas += 4.5;
+                    break;
+            }
+
+            switch (usoCoche) {
+                case 'casi-nunca':
+                    huellaAnualToneladas += 0.2;
+                    break;
+                case 'algunas-veces':
+                    huellaAnualToneladas += 1.5;
+                    break;
+                case 'varias-veces':
+                    huellaAnualToneladas += 3.0;
+                    break;
+                case 'todos-dias':
+                    huellaAnualToneladas += 5.0;
+                    break;
+            }
+
+            switch (viajesAvion) {
+                case 'ninguno':
+                    huellaAnualToneladas += 0;
+                    break;
+                case 'uno':
+                    huellaAnualToneladas += 0.5;
+                    break;
+                case 'varios':
+                    huellaAnualToneladas += 2.0;
+                    break;
+            }
+
+            if (recicla === 'si') {
+                huellaAnualToneladas -= 0.5; // Reducción de huella por reciclar
+            }
+            
+            // Asegurarse de que el valor no sea negativo
+            if (huellaAnualToneladas < 0) {
+                huellaAnualToneladas = 0;
+            }
+
+            document.getElementById('huella-anual').textContent = huellaAnualToneladas.toFixed(2);
+            
+            let evaluacion = '';
+            let clase = '';
+
+            if (huellaAnualToneladas < 2) {
+                evaluacion = '¡Fantástico! Tu huella es muy baja. Eres un gran ejemplo de sostenibilidad. 🌿';
+                clase = 'bueno';
+            } else if (huellaAnualToneladas < 6) {
+                evaluacion = '¡Muy bien! Tu huella es moderada. Con algunos ajustes, podrías reducirla aún más. 🌳';
+                clase = 'regular';
+            } else if (huellaAnualToneladas < 10) {
+                evaluacion = 'Tu huella está por encima del promedio. Considera formas de reducir tu consumo energético y de transporte. ⚠️';
+                clase = 'malo';
+            } else {
+                evaluacion = 'Tu huella es muy alta. Hay una gran oportunidad para hacer cambios significativos. 🚨';
+                clase = 'malo';
+            }
+
+            const evaluacionElement = document.getElementById('evaluacion');
+            evaluacionElement.textContent = evaluacion;
+            evaluacionElement.className = clase;
+            document.getElementById('resultado').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
