@@ -265,3 +265,16 @@ body::after {
 .img{
  border-radius: 50%;
 }
+body{
+  font-family: 'Courier New', Courier, monospace;
+}
+p{
+  font-family: 'Times New Roman', Times, serif;
+  color: green;
+}
+h2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-decoration: blue;
+}
+
+
