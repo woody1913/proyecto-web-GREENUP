@@ -276,5 +276,6 @@ h2{
   font-family: sans-serif;
   text-decoration: rgb(17, 17, 88);
 }
-
-
+.figma{ 
+  justify-content: center;
+}
