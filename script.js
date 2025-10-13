@@ -76,3 +76,51 @@ document.addEventListener('DOMContentLoaded', () => {
         resultadoDiv.classList.remove('hidden');
     });
 });
+let userExp = 0;
+        let userLevel = 1;
+        const EXP_PER_LEVEL = 2000; 
+
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const currentExpSpan = document.getElementById('currentExp');
+        const currentLevelSpan = document.getElementById('currentLevel');
+        const expToNextLevelSpan = document.getElementById('expToNextLevel');
+        const completeButtons = document.querySelectorAll('.complete-mission');
+
+        expToNextLevelSpan.textContent = EXP_PER_LEVEL;
+
+        function updateProgress() {
+            let progress = (userExp / EXP_PER_LEVEL) * 100;
+            if (progress > 100) progress = 100; 
+
+            progressBar.style.width = progress.toFixed(2) + '%';
+            progressText.textContent = `${progress.toFixed(0)}%`;
+
+            currentExpSpan.textContent = userExp;
+            currentLevelSpan.textContent = userLevel;
+
+            if (userExp >= EXP_PER_LEVEL) {
+                userLevel++;
+                userExp -= EXP_PER_LEVEL; 
+                alert(`¡Felicidades! ¡Has subido al Nivel ${userLevel}!`);
+                updateProgress();
+            }
+        }
+
+        completeButtons.forEach(button => {
+            const expGained = parseInt(button.getAttribute('data-exp'));
+
+            button.addEventListener('click', function() {
+
+                userExp += expGained;
+
+                updateProgress();
+
+                this.disabled = true;
+                this.textContent = 'Completada';
+                this.classList.remove('btn-success');
+                this.classList.add('btn-secondary');
+            });
+        });
+
+        updateProgress();
