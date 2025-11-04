@@ -1,38 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">">
 <head>
-  <meta charset="UTF-8">
-  <title>Dudas GREENUP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dudas GREENUP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body id="dudas">
 
-  <div class="navbar">
-    <div class="logo-container">
-      <img src="imagenes/4181E3B8-1C13-4848-8590-D15F80325442.png" alt="Logo del grupo" class="img">
-      <span>GREENUP</span>
+    <div class="navbar greenup-navbar animate__animated animate__fadeInDown">
+        <div class="logo-container">
+            <img src="imagenes/4181E3B8-1C13-4848-8590-D15F80325442.png" alt="Logo del grupo" class="img">
+            <span>GREENUP</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="misiones.html">Misiones</a>
+            <a href="dudas.html">Preguntas Frecuentes</a>
+            <a href="informacion.html">Información Relevante</a>
+        </div>
+        <div class="user-profile-nav">
+            <img id="user-avatar" src="imagenes/default-avatar.png" alt="Foto de Perfil" class="profile-img-nav animate__animated animate__pulse" onclick="document.getElementById('file-input').click()">
+            <span class="user-level-nav badge bg-success animate__animated animate__fadeIn">Nivel <span id="nav-level">1</span></span>
+            <input type="file" id="file-input" class="hide-input" accept="image/*">
+        </div>
     </div>
-    <div class="nav-links">
-        <a href="index.html">inicio</a>
-      <a href="misiones.html">Misiones</a>
-      <a href="dudas.html">Preguntas frecuentes</a>
-      <a href="informacion.html">Información Relevante</a>
-      
-    </div>
-  </div>
-  <div style="padding: 30px;">
-    <h1>Preguntas frecuentes </h1>
-    <h2> ¿Qué es la huella de carbono?</h2>
-    <p>La huella de carbono es una medida que indica la cantidad total de gases de efecto invernadero (GEI) emitidos por efecto directo o indirecto de un individuo, organización, evento o producto</p>
-    
-    <h2>¿Qué es acción por el clima</h2>
-    <p>La Acción por el Clima consiste en fortalecer la capacidad de adaptarnos a los riesgos que estén relacionados con el clima y los desastres naturales.</p>
-    <h2>¿Qué es el Betchmarking</h2>
-    <p>El Benchmarking es un proceso sistemático y continuo de comparación de productos, servicios, procesos y prácticas de una empresa con las de otras, generalmente las que destacan en su sector o en áreas específicas, con el objetivo de identificar las mejores prácticas y usarlas para mejorar la eficiencia, la productividad y la competitividad propia. </p>
-    <h2>HUELLA DE CARBONO</h2>
-    <img src="https://almomento.mx/wp-content/uploads/2021/04/huelladecarbono-reddearboles.jpg" alt="">
-  </div>
+    <div class="container mt-5 main-content animate__animated animate__fadeIn">
+        <h1 class="text-center mb-5 animate__animated animate__fadeInDown">Preguntas Frecuentes (FAQ) ❓</h1>
 
+        <div class="accordion" id="faqAccordion">
+            
+            <div class="accordion-item shadow-sm animate__animated animate__fadeInUp">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        ¿Qué es la huella de carbono?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        La huella de carbono es una medida que indica la cantidad total de gases de efecto invernadero (GEI) emitidos por efecto directo o indirecto de un individuo, organización, evento o producto. Es la herramienta clave para saber cuánto contaminamos y cómo podemos empezar a reducirlo.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item shadow-sm animate__animated animate__fadeInUp">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        ¿Qué es la Acción por el Clima?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        La Acción por el Clima consiste en fortalecer la capacidad de adaptarnos a los riesgos que estén relacionados con el clima y los desastres naturales. Se refiere a los esfuerzos para reducir las emisiones de gases de efecto invernadero y preparar a la sociedad para los efectos inevitables del calentamiento global.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item shadow-sm animate__animated animate__fadeInUp">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        ¿Qué es el Benchmarking y por qué lo mencionan?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        El Benchmarking es un proceso sistemático y continuo de comparación de productos, servicios, procesos y prácticas de una empresa o proyecto con las de otras que destacan en su sector. Lo mencionamos porque, para GreenUp, es crucial compararnos con otras iniciativas ecológicas para adoptar las mejores prácticas y asegurarnos de que nuestras misiones sean efectivas y relevantes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,126 +1,231 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('carbon-footprint-form');
-    const resultadoDiv = document.getElementById('resultado');
-    const huellaValor = document.getElementById('huella-valor');
-    const mensajeP = document.getElementById('mensaje');
+    // --- Configuración Inicial y Carga de Datos ---
+    let userExp = parseInt(localStorage.getItem('userExp')) || 0;
+    let userLevel = parseInt(localStorage.getItem('userLevel')) || 1;
+    const userAvatar = localStorage.getItem('userAvatar') || 'imagenes/default-avatar.png';
+    const EXP_PER_LEVEL = 2000; 
+    let isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // Referencias de elementos que existen en todas las páginas
+    const userAvatarImg = document.getElementById('user-avatar');
+    const navLevelSpan = document.getElementById('nav-level');
+    const fileInput = document.getElementById('file-input');
 
-        // Obtener los valores del formulario
-        const energia = document.getElementById('energia').value;
-        const transporte = document.getElementById('transporte').value;
-        const reciclaje = document.querySelector('input[name="reciclaje"]:checked').value;
+    // --- Funciones de Utilidad ---
+    function saveProgress() {
+        localStorage.setItem('userExp', userExp);
+        localStorage.setItem('userLevel', userLevel);
+    }
 
-        let huellaAnual = 0;
+    function updateNavLevel() {
+        if (navLevelSpan) {
+            navLevelSpan.textContent = userLevel;
+            // Aplicar animación al nivel
+            navLevelSpan.classList.add('animate__tada');
+            setTimeout(() => {
+                navLevelSpan.classList.remove('animate__tada');
+            }, 1000);
+        }
+        if (userAvatarImg) userAvatarImg.src = userAvatar; // Asegura que la foto esté en todas las nav
+    }
 
-        // --- Lógica del Cálculo Simplificado ---
+    // Inicializa el nivel y la foto en todas las barras de navegación
+    updateNavLevel(); 
 
-        // 1. Consumo de energía (traducir la opción a un valor numérico)
-        switch (energia) {
-            case 'alto':
-                huellaAnual += 2000; // Valor alto en kg de CO2
-                break;
-            case 'medio':
-                huellaAnual += 1000; // Valor medio
-                break;
-            case 'bajo':
-                huellaAnual += 500; // Valor bajo
-                break;
+    // --- 1. Lógica de Autenticación (Modal) ---
+    const authModalElement = document.getElementById('authModal');
+    if (authModalElement) {
+        const authModal = new bootstrap.Modal(authModalElement);
+        const authForm = document.getElementById('auth-form');
+
+        // Mostrar el modal si no está autenticado y estamos en la página de inicio
+        if (!isAuthenticated && window.location.pathname.endsWith('index.html')) {
+            authModal.show();
         }
 
-        // 2. Uso de transporte (traducir la opción a un valor numérico)
-        switch (transporte) {
-            case 'coche_diario':
-                huellaAnual += 3500; // Mucho uso de coche
-                break;
-            case 'transporte_publico':
-                huellaAnual += 500; // Uso de transporte público
-                break;
-            case 'bicicleta':
-                huellaAnual += 100; // Uso de bicicleta/a pie
-                break;
+        authForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            // Lógica simple: Iniciar sesión o registrarse si no existe
+            isAuthenticated = true;
+            localStorage.setItem('isAuthenticated', 'true');
+            alert(`¡Bienvenido a GREENUP, ${username}!`);
+            authModal.hide();
+        });
+    }
+
+    // --- 2. Foto de Perfil Modificable ---
+    if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newAvatar = e.target.result;
+                    // Actualiza todas las instancias de la imagen de perfil
+                    document.querySelectorAll('#user-avatar').forEach(img => {
+                        img.src = newAvatar;
+                    });
+                    localStorage.setItem('userAvatar', newAvatar);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // --- 3. Texto Curvo Modificable (Solo en index.html) ---
+    window.modificarTextoCurvo = function() {
+        const curvedTextElement = document.getElementById('curved-text');
+        if (curvedTextElement) {
+            const newText = prompt("Introduce el nuevo texto para el planeta (máx. 40 caracteres):", curvedTextElement.textContent);
+            if (newText !== null && newText.length <= 40) {
+                curvedTextElement.textContent = newText.toUpperCase();
+                // Opcional: Agregar animación al cambiar
+                curvedTextElement.classList.add('animate__animated', 'animate__flash');
+                setTimeout(() => {
+                    curvedTextElement.classList.remove('animate__animated', 'animate__flash');
+                }, 1000);
+            } else if (newText && newText.length > 40) {
+                alert("El texto es demasiado largo. Debe ser de 40 caracteres o menos.");
+            }
         }
+    }
 
-        // 3. Hábito de reciclaje (ajusta la huella final)
-        if (reciclaje === 'si') {
-            huellaAnual -= 300; // Resta kg de CO2 por reciclar
-        }
-
-        // Mostrar el resultado
-        const huellaKg = huellaAnual.toFixed(2);
-        huellaValor.textContent = `${huellaKg} kg de CO2`;
-
-        // Determinar si la huella es "buena" o "mala"
-        let mensaje = "";
-        let clase = "";
-
-        const umbralBuena = 3000;
-        const umbralMala = 6000;
-
-        if (huellaAnual < umbralBuena) {
-            mensaje = "¡Tu huella de carbono es **buena**! Sigue con tus hábitos sostenibles. ✨";
-            clase = "buena";
-        } else if (huellaAnual < umbralMala) {
-            mensaje = "Tu huella de carbono es **promedio**. Considera pequeños cambios para reducirla. 😉";
-            clase = "promedio";
-        } else {
-            mensaje = "Tu huella de carbono es **alta**. Hay mucho potencial para mejorarla. 🌿";
-            clase = "mala";
-        }
-
-        mensajeP.innerHTML = mensaje;
-        mensajeP.classList.remove("buena", "promedio", "mala");
-        mensajeP.classList.add(clase);
-
-        resultadoDiv.classList.remove('hidden');
-    });
-});
-let userExp = 0;
-        let userLevel = 1;
-        const EXP_PER_LEVEL = 2000; 
-
-        const progressBar = document.getElementById('progressBar');
+    // --- 4. Lógica de Experiencia y Nivel (Solo en misiones.html) ---
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) { // Si estamos en misiones.html
         const progressText = document.getElementById('progressText');
         const currentExpSpan = document.getElementById('currentExp');
         const currentLevelSpan = document.getElementById('currentLevel');
         const expToNextLevelSpan = document.getElementById('expToNextLevel');
         const completeButtons = document.querySelectorAll('.complete-mission');
-
-        expToNextLevelSpan.textContent = EXP_PER_LEVEL;
+        
+        if (expToNextLevelSpan) expToNextLevelSpan.textContent = EXP_PER_LEVEL;
 
         function updateProgress() {
+            // Lógica de Subida de Nivel
+            if (userExp >= EXP_PER_LEVEL) {
+                userLevel++;
+                userExp -= EXP_PER_LEVEL; 
+                alert(`¡Felicidades! ¡Has subido al Nivel ${userLevel}!`);
+                saveProgress();
+                updateProgress(); // Llama recursivamente para recalcular si subió más de un nivel
+                updateNavLevel(); // Actualizar el nivel en la barra
+                return;
+            }
+
+            // Actualizar el DOM
+            currentExpSpan.textContent = userExp;
+            currentLevelSpan.textContent = userLevel;
+            updateNavLevel(); // Asegura que la barra de navegación tenga el nivel correcto
+
             let progress = (userExp / EXP_PER_LEVEL) * 100;
             if (progress > 100) progress = 100; 
 
             progressBar.style.width = progress.toFixed(2) + '%';
             progressText.textContent = `${progress.toFixed(0)}%`;
-
-            currentExpSpan.textContent = userExp;
-            currentLevelSpan.textContent = userLevel;
-
-            if (userExp >= EXP_PER_LEVEL) {
-                userLevel++;
-                userExp -= EXP_PER_LEVEL; 
-                alert(`¡Felicidades! ¡Has subido al Nivel ${userLevel}!`);
-                updateProgress();
-            }
+            
+            saveProgress();
         }
+
+        // Manejador de botones de misión
+        const completedMissions = JSON.parse(localStorage.getItem('completedMissions')) || {};
 
         completeButtons.forEach(button => {
             const expGained = parseInt(button.getAttribute('data-exp'));
+            // Usar un identificador único basado en el contenido del card o un ID fijo
+            const missionId = button.closest('.card').id || button.closest('.card').querySelector('h3').textContent.trim();
+            
+            // Cargar estado de la misión
+            if (completedMissions[missionId]) {
+                button.disabled = true;
+                button.textContent = 'Completada';
+                button.classList.remove('btn-success', 'btn-primary');
+                button.classList.add('btn-secondary');
+            }
 
             button.addEventListener('click', function() {
+                if (!isAuthenticated) {
+                    alert('Debes iniciar sesión para completar misiones.');
+                    return;
+                }
 
                 userExp += expGained;
-
                 updateProgress();
 
+                // Guardar estado de la misión como completada
+                completedMissions[missionId] = true;
+                localStorage.setItem('completedMissions', JSON.stringify(completedMissions));
+
+                // Deshabilitar y cambiar apariencia
                 this.disabled = true;
                 this.textContent = 'Completada';
-                this.classList.remove('btn-success');
+                this.classList.remove('btn-success', 'btn-primary');
                 this.classList.add('btn-secondary');
+                // Agregar animación de éxito a la misión
+                this.closest('.card').classList.add('animate__animated', 'animate__flipOutY');
             });
         });
 
         updateProgress();
+    }
+    
+    // --- Lógica de la Calculadora de Huella de Carbono (Solo en index.html) ---
+    const form = document.getElementById('carbon-footprint-form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Lógica de cálculo (sin cambios importantes)
+            const consumoEnergia = document.getElementById('consumo-energia').value;
+            const usoCoche = document.getElementById('uso-coche').value;
+            const viajesAvion = document.getElementById('viajes-avion').value;
+            const recicla = document.querySelector('input[name="reciclaje"]:checked').value;
+            
+            let huellaAnualKg = 0; // Usaremos Kg para el cálculo intermedio
+
+            // Ponderaciones (ejemplo simplificado, puedes ajustarlas)
+            const ponderacionEnergia = { 'bajo': 500, 'medio': 1000, 'alto': 2000 };
+            const ponderacionCoche = { 'casi-nunca': 100, 'algunas-veces': 1500, 'todos-dias': 3500 };
+            const ponderacionAvion = { 'ninguno': 0, 'varios': 4000 };
+            const ponderacionReciclaje = { 'si': -500, 'no': 0 };
+
+            huellaAnualKg += ponderacionEnergia[consumoEnergia] || 0;
+            huellaAnualKg += ponderacionCoche[usoCoche] || 0;
+            huellaAnualKg += ponderacionAvion[viajesAvion] || 0;
+            huellaAnualKg += ponderacionReciclaje[recicla] || 0;
+
+            const huellaAnualToneladas = (huellaAnualKg / 1000).toFixed(2);
+
+            document.getElementById('huella-anual').textContent = huellaAnualToneladas;
+            
+            let evaluacion = '';
+            let clase = '';
+
+            // Criterios de evaluación (toneladas de CO2)
+            if (huellaAnualToneladas < 2) {
+                evaluacion = '¡Fantástico! Tu huella es muy baja. Eres un gran ejemplo de sostenibilidad. 🌿';
+                clase = 'bueno';
+            } else if (huellaAnualToneladas < 6) {
+                evaluacion = '¡Muy bien! Tu huella es moderada. Con algunos ajustes, podrías reducirla aún más. 🌳';
+                clase = 'regular';
+            } else if (huellaAnualToneladas < 10) {
+                evaluacion = 'Tu huella está por encima del promedio. Considera formas de reducir tu consumo energético y de transporte. ⚠️';
+                clase = 'malo';
+            } else {
+                evaluacion = 'Tu huella es muy alta. Hay una gran oportunidad para hacer cambios significativos. 🚨';
+                clase = 'malo';
+            }
+
+            const evaluacionElement = document.getElementById('evaluacion');
+            evaluacionElement.textContent = evaluacion;
+            // Se usa DOM para modificar la clase dinámicamente
+            evaluacionElement.className = 'mt-2 p-2 rounded ' + clase; 
+            document.getElementById('resultado').style.display = 'block';
+            
+            // Agregar animación de "resultado"
+            document.getElementById('resultado').classList.add('animate__animated', 'animate__fadeIn');
+        });
+    }
+
+});
