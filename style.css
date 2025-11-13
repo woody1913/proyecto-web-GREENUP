@@ -234,21 +234,19 @@ p {
 
 .btn-green-custom {
     background-color: #28a745;
-    border-color: #28a745;
+    border-color: #28b649;
     transition: background-color 0.3s;
 }
 .btn-green-custom:hover {
-    background-color: #1e7e34;
+    background-color: #000000;
     border-color: #1e7e34;
 }
 
-/* Eliminación de estilos "style" en HTML */
 .hide-input {
     display: none;
 }
-/* Estilos para el Modal de Subida de Nivel */
 .modal-content.bg-success {
-    background-color: #28a745 !important; /* Verde Bootstrap */
+    background-color: #10c23a !important; 
     border-radius: 15px;
 }
 
@@ -257,10 +255,9 @@ p {
 }
 
 .btn-close-white {
-    filter: invert(1); /* Hace que el ícono de cierre sea blanco para el fondo verde */
+    filter: invert(1); 
 }
 
-/* Estilo para un toque más animado en la barra de progreso */
 #progressBar {
     transition: width 0.5s ease-in-out;
 }
