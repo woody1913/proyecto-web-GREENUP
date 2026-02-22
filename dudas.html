@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dudas GREENUP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body id="dudas">
+
 
     <div class="navbar greenup-navbar animate__animated animate__fadeInDown">
         <div class="logo-container">
@@ -22,58 +26,96 @@
             <a href="informacion.html">Información Relevante</a>
         </div>
         <div class="user-profile-nav">
-            <img id="user-avatar" src="imagenes/default-avatar.png" alt="Foto de Perfil" class="profile-img-nav animate__animated animate__pulse" onclick="document.getElementById('file-input').click()">
-            <span class="user-level-nav badge bg-success animate__animated animate__fadeIn">Nivel <span id="nav-level">1</span></span>
+            <img id="user-avatar" src="imagenes/default-avatar.png" alt="Foto de Perfil"
+                class="profile-img-nav animate__animated animate__pulse"
+                onclick="document.getElementById('file-input').click()">
+            <span class="user-level-nav badge bg-success animate__animated animate__fadeIn">Nivel <span
+                    id="nav-level">1</span></span>
             <input type="file" id="file-input" class="hide-input" accept="image/*">
         </div>
     </div>
     <div class="container mt-5 main-content animate__animated animate__fadeIn">
         <h1 class="text-center mb-5 animate__animated animate__fadeInDown">Preguntas Frecuentes (FAQ) ❓</h1>
-
+        <!-- 🔎 BUSCADOR -->
+        <div class="mb-4">
+            <input type="text" id="searchFaq" class="form-control" placeholder="Buscar pregunta...">
+            <small id="noResults" class="text-danger d-none">No se encontraron resultados.</small>
+        </div>
         <div class="accordion" id="faqAccordion">
-            
+
             <div class="accordion-item shadow-sm animate__animated animate__fadeInUp">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         ¿Qué es la huella de carbono?
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        La huella de carbono es una medida que indica la cantidad total de gases de efecto invernadero (GEI) emitidos por efecto directo o indirecto de un individuo, organización, evento o producto. Es la herramienta clave para saber cuánto contaminamos y cómo podemos empezar a reducirlo.
+                        La huella de carbono es una medida que indica la cantidad total de gases de efecto invernadero
+                        (GEI) emitidos por efecto directo o indirecto de un individuo, organización, evento o producto.
+                        Es la herramienta clave para saber cuánto contaminamos y cómo podemos empezar a reducirlo.
+                        <hr>
+                        <button class="btn btn-sm btn-outline-success useful-btn">👍 ¿Te sirvió esta respuesta?</button>
+                        <span class="ms-2 useful-count">0</span>
                     </div>
                 </div>
             </div>
+
 
             <div class="accordion-item shadow-sm animate__animated animate__fadeInUp">
                 <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         ¿Qué es la Acción por el Clima?
                     </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        La Acción por el Clima consiste en fortalecer la capacidad de adaptarnos a los riesgos que estén relacionados con el clima y los desastres naturales. Se refiere a los esfuerzos para reducir las emisiones de gases de efecto invernadero y preparar a la sociedad para los efectos inevitables del calentamiento global.
+                        La Acción por el Clima consiste en fortalecer la capacidad de adaptarnos a los riesgos que estén
+                        relacionados con el clima y los desastres naturales. Se refiere a los esfuerzos para reducir las
+                        emisiones de gases de efecto invernadero y preparar a la sociedad para los efectos inevitables
+                        del calentamiento global.
+                        <hr>
+                        <button class="btn btn-sm btn-outline-success useful-btn">👍 ¿Te sirvió esta respuesta?</button>
+                        <span class="ms-2 useful-count">0</span>
                     </div>
                 </div>
             </div>
 
+
             <div class="accordion-item shadow-sm animate__animated animate__fadeInUp">
                 <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         ¿Qué es el Benchmarking y por qué lo mencionan?
                     </button>
                 </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        El Benchmarking es un proceso sistemático y continuo de comparación de productos, servicios, procesos y prácticas de una empresa o proyecto con las de otras que destacan en su sector. Lo mencionamos porque, para GreenUp, es crucial compararnos con otras iniciativas ecológicas para adoptar las mejores prácticas y asegurarnos de que nuestras misiones sean efectivas y relevantes.
+                        El Benchmarking es un proceso sistemático y continuo de comparación de productos, servicios,
+                        procesos y prácticas de una empresa o proyecto con las de otras que destacan en su sector. Lo
+                        mencionamos porque, para GreenUp, es crucial compararnos con otras iniciativas ecológicas para
+                        adoptar las mejores prácticas y asegurarnos de que nuestras misiones sean efectivas y
+                        relevantes.
+                        <hr>
+                        <button class="btn btn-sm btn-outline-success useful-btn">👍 ¿Te sirvió esta respuesta?</button>
+                        <span class="ms-2 useful-count">0</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script src="dudas.js"></script>
 </body>
+
 </html>
